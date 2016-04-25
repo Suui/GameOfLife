@@ -5,20 +5,32 @@ namespace GameOfLife
 {
 	public class Neighborhood
 	{
-		public virtual List<Coordinate> For(Coordinate coordinate)
+		private Coordinate Coordinate { get; set; }
+
+		private Neighborhood(Coordinate coordinate)
+		{
+			Coordinate = coordinate;
+		}
+
+		public static Neighborhood For(Coordinate coordinate)
+		{
+			return new Neighborhood(coordinate);
+		}
+
+		public List<Coordinate> In(World world)
 		{
 			return new List<Coordinate>
 			{
-				new Coordinate(coordinate.X - 1,    coordinate.Y - 1),
-				new Coordinate(coordinate.X - 1,    coordinate.Y),
-				new Coordinate(coordinate.X - 1,    coordinate.Y + 1),
-			
-				new Coordinate(coordinate.X,		coordinate.Y - 1),
-				new Coordinate(coordinate.X,		coordinate.Y + 1),
-				
-				new Coordinate(coordinate.X + 1,	coordinate.Y - 1),
-				new Coordinate(coordinate.X + 1,	coordinate.Y),
-				new Coordinate(coordinate.X + 1,	coordinate.Y + 1)
+				world.Get(Coordinate.X - 1,    Coordinate.Y - 1),
+				world.Get(Coordinate.X - 1,    Coordinate.Y),
+				world.Get(Coordinate.X - 1,    Coordinate.Y + 1),
+
+				world.Get(Coordinate.X,        Coordinate.Y - 1),
+				world.Get(Coordinate.X,        Coordinate.Y + 1),
+
+				world.Get(Coordinate.X + 1,    Coordinate.Y - 1),
+				world.Get(Coordinate.X + 1,    Coordinate.Y),
+				world.Get(Coordinate.X + 1,    Coordinate.Y + 1)
 			};
 		}
 	}

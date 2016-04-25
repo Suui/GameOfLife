@@ -22,9 +22,11 @@ namespace GameOfLifeTest
 		[TestCase(6, 6)]
 		public void include_the_eight_neighbors(int x, int y)
 		{
-			var neighbbors = new Neighborhood().For(new Coordinate(5, 5));
+			var world = new World(10, 10);
 
-			neighbbors.Count(coordinate => coordinate.X == x && coordinate.Y == y).Should().Be(1);
+			var neighbbors = world.NeighborhoodFor(new Coordinate(5, 5));
+
+			neighbbors.Count(coordinate => coordinate.Equals(new Coordinate(x, y))).Should().Be(1);
 		}
 	}
 }
