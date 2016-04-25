@@ -25,7 +25,7 @@ namespace GameOfLifeTest
 				Cell = new DeadCell(),
 				Neighborhood = neighborhood
 			};
-			neighborhood.GetFor(Arg.Is(coordinate)).Returns(new List<Coordinate>
+			neighborhood.For(coordinate).Returns(new List<Coordinate>
 			{
 				new Coordinate { Cell = new LiveCell() },
 				new Coordinate { Cell = new LiveCell() },
@@ -33,6 +33,7 @@ namespace GameOfLifeTest
 			});
 
 			coordinate.CalculateNextState();
+
 			coordinate.Cell.NextState.GetType().Should().Be(typeof (LiveCell));
 		}
 	}
