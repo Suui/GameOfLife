@@ -27,11 +27,7 @@ namespace GameOfLifeTest
 		[Test]
 		public void come_to_life_when_it_has_extacly_three_live_neighbors()
 		{
-			var coordinate = new Coordinate
-			{
-				Cell = new DeadCell(),
-				Neighborhood = Neighborhood
-			};
+			var coordinate = NewCoordinateWithADeadCell();
 			Neighborhood.For(coordinate).Returns(new List<Coordinate>
 			{
 				new Coordinate { Cell = new LiveCell() },
@@ -47,11 +43,7 @@ namespace GameOfLifeTest
 		[Test]
 		public void die_if_it_has_less_than_two_neighbors_alive()
 		{
-			var coordinate = new Coordinate
-			{
-				Cell = new LiveCell(),
-				Neighborhood = Neighborhood
-			};
+			var coordinate = NewCoordinateWithALiveCell();
 			Neighborhood.For(coordinate).Returns(new List<Coordinate>
 			{
 				new Coordinate { Cell = new LiveCell() }
@@ -60,6 +52,25 @@ namespace GameOfLifeTest
 			coordinate.CalculateNextState();
 
 			coordinate.Cell.NextState.GetType().Should().Be(typeof (DeadCell));
+		}
+
+		private Coordinate NewCoordinateWithADeadCell()
+		{
+			return new Coordinate
+			{
+				Cell = new DeadCell(),
+				Neighborhood = Neighborhood
+			};
+		}
+
+		private Coordinate NewCoordinateWithALiveCell()
+		{
+			var coordinate = new Coordinate
+			{
+				Cell = new LiveCell(),
+				Neighborhood = Neighborhood
+			};
+			return coordinate;
 		}
 	}
 }
