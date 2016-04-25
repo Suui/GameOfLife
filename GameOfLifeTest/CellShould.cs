@@ -16,16 +16,23 @@ namespace GameOfLifeTest
 	[TestFixture]
 	class CellShould
 	{
+		private Neighborhood Neighborhood { get; set; }
+
+		[SetUp]
+		public void GivenAFakeNeighborhood()
+		{
+			Neighborhood = Substitute.For<Neighborhood>();
+		}
+
 		[Test]
 		public void come_to_life_when_it_has_extacly_three_live_neighbors()
 		{
-			var neighborhood = Substitute.For<Neighborhood>();
 			var coordinate = new Coordinate
 			{
 				Cell = new DeadCell(),
-				Neighborhood = neighborhood
+				Neighborhood = Neighborhood
 			};
-			neighborhood.For(coordinate).Returns(new List<Coordinate>
+			Neighborhood.For(coordinate).Returns(new List<Coordinate>
 			{
 				new Coordinate { Cell = new LiveCell() },
 				new Coordinate { Cell = new LiveCell() },
@@ -40,13 +47,12 @@ namespace GameOfLifeTest
 		[Test]
 		public void die_if_it_has_less_than_two_neighbors_alive()
 		{
-			var neighborhood = Substitute.For<Neighborhood>();
 			var coordinate = new Coordinate
 			{
 				Cell = new LiveCell(),
-				Neighborhood = neighborhood
+				Neighborhood = Neighborhood
 			};
-			neighborhood.For(coordinate).Returns(new List<Coordinate>
+			Neighborhood.For(coordinate).Returns(new List<Coordinate>
 			{
 				new Coordinate { Cell = new LiveCell() }
 			});
