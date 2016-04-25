@@ -1,20 +1,19 @@
 namespace GameOfLife
 {
-	public class Cell
+	public abstract class Cell
 	{
 		public Cell NextState { get; set; }
 
-		public virtual bool IsAlive()
-		{
-			return true;
-		}
+		public abstract bool IsAlive();
 	}
 
 	public class DeadCell : Cell
 	{
+		public override bool IsAlive() => false;
 	}
 
 	public class LiveCell : Cell
 	{
+		public override bool IsAlive() => true;
 	}
 }
