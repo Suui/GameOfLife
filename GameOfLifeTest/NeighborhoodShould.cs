@@ -12,26 +12,15 @@ namespace GameOfLifeTest
 	[TestFixture]
 	class NeighborhoodShould
 	{
-		[Test]
-		public void include_the_left_neighbor()
-		{
-			var neighbors = new Neighborhood().For(new Coordinate(5, 5));
-
-			neighbors.Count(coordinate => coordinate.X == 5 && coordinate.Y == 4).Should().Be(1);
-		}
-
-		[Test]
-		public void include_the_right_neighbor()
-		{
-			var neighbors = new Neighborhood().For(new Coordinate(5, 5));
-
-			neighbors.Count(coordinate => coordinate.X == 5 && coordinate.Y == 6).Should().Be(1);
-		}
-
 		[TestCase(4, 4)]
 		[TestCase(4, 5)]
 		[TestCase(4, 6)]
-		public void include_the_three_upper_neighbors(int x, int y)
+		[TestCase(5, 4)]
+		[TestCase(5, 6)]
+		[TestCase(6, 4)]
+		[TestCase(6, 5)]
+		[TestCase(6, 6)]
+		public void include_the_eight_neighbors(int x, int y)
 		{
 			var neighbbors = new Neighborhood().For(new Coordinate(5, 5));
 

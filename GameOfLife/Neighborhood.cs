@@ -9,11 +9,16 @@ namespace GameOfLife
 		{
 			return new List<Coordinate>
 			{
+				new Coordinate(coordinate.X - 1,    coordinate.Y - 1),
+				new Coordinate(coordinate.X - 1,    coordinate.Y),
+				new Coordinate(coordinate.X - 1,    coordinate.Y + 1),
+			
 				new Coordinate(coordinate.X,		coordinate.Y - 1),
 				new Coordinate(coordinate.X,		coordinate.Y + 1),
-				new Coordinate(coordinate.X - 1,	coordinate.Y - 1),
-				new Coordinate(coordinate.X - 1,	coordinate.Y),
-				new Coordinate(coordinate.X - 1,	coordinate.Y + 1)
+				
+				new Coordinate(coordinate.X + 1,	coordinate.Y - 1),
+				new Coordinate(coordinate.X + 1,	coordinate.Y),
+				new Coordinate(coordinate.X + 1,	coordinate.Y + 1)
 			};
 		}
 	}
