@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using FluentAssertions;
+using GameOfLife;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -34,44 +34,6 @@ namespace GameOfLifeTest
 
 			coordinate.CalculateNextState();
 			coordinate.Cell.NextState.GetType().Should().Be(typeof (LiveCell));
-		}
-	}
-
-	public class DeadCell : Cell
-	{
-	}
-
-	public class Neighborhood
-	{
-		public virtual List<Coordinate> GetFor(Coordinate coordinate)
-		{
-			return new List<Coordinate>();
-		}
-	}
-
-	public class LiveCell : Cell
-	{
-	}
-
-	public class Coordinate
-	{
-		public Cell Cell { get; set; }
-		public Neighborhood Neighborhood { get; set; }
-
-		public void CalculateNextState()
-		{
-			var aliveNeighbors = Neighborhood.GetFor(this).Count(neighbor => neighbor.Cell.IsAlive());
-			if (aliveNeighbors == 3) Cell.NextState = new LiveCell();
-		}
-	}
-
-	public class Cell
-	{
-		public Cell NextState { get; set; }
-
-		public virtual bool IsAlive()
-		{
-			return true;
 		}
 	}
 }
