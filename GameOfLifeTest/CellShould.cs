@@ -54,6 +54,23 @@ namespace GameOfLifeTest
 			coordinate.Cell.NextState.GetType().Should().Be(typeof (DeadCell));
 		}
 
+		[Test]
+		public void die_if_it_has_more_than_three_neighbors_alive()
+		{
+			var coordinate = NewCoordinateWithALiveCell();
+			Neighborhood.For(coordinate).Returns(new List<Coordinate>
+			{
+				new Coordinate { Cell = new LiveCell() },
+				new Coordinate { Cell = new LiveCell() },
+				new Coordinate { Cell = new LiveCell() },
+				new Coordinate { Cell = new LiveCell() }
+			});
+
+			coordinate.CalculateNextState();
+
+			coordinate.Cell.NextState.GetType().Should().Be(typeof (DeadCell));
+		}
+
 		private Coordinate NewCoordinateWithADeadCell()
 		{
 			return new Coordinate
