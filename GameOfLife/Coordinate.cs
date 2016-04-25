@@ -12,6 +12,7 @@ namespace GameOfLife
 		{
 			var aliveNeighbors = Neighborhood.For(this).Count(neighbor => neighbor.Cell.IsAlive());
 			if (aliveNeighbors == 3) Cell.NextState = new LiveCell();
+			else Cell.NextState = new DeadCell();
 		}
 	}
 }

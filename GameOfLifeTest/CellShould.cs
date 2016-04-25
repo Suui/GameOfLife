@@ -36,5 +36,24 @@ namespace GameOfLifeTest
 
 			coordinate.Cell.NextState.GetType().Should().Be(typeof (LiveCell));
 		}
+
+		[Test]
+		public void die_if_it_has_less_than_two_neighbors_alive()
+		{
+			var neighborhood = Substitute.For<Neighborhood>();
+			var coordinate = new Coordinate
+			{
+				Cell = new LiveCell(),
+				Neighborhood = neighborhood
+			};
+			neighborhood.For(coordinate).Returns(new List<Coordinate>
+			{
+				new Coordinate { Cell = new LiveCell() }
+			});
+
+			coordinate.CalculateNextState();
+
+			coordinate.Cell.NextState.GetType().Should().Be(typeof (DeadCell));
+		}
 	}
 }
