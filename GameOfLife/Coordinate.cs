@@ -18,9 +18,9 @@ namespace GameOfLife
 			Y = y;
 		}
 
-		public void CalculateNextState()
+		public void CalculateNextState(List<Coordinate> neighbors)
 		{
-			var aliveNeighbors = Neighborhood.For(this).Count(neighbor => neighbor.Cell.IsAlive());
+			var aliveNeighbors = neighbors.Count(neighbor => neighbor.Cell.IsAlive());
 			if (aliveNeighbors == 3) Cell.NextState = new LiveCell();
 			else
 			{
