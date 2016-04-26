@@ -6,13 +6,18 @@ namespace GameOfLife
 	public class World
 	{
 		private List<Coordinate> Coordinates { get; }
+		private int Rows { get; }
+		private int Columns { get; }
 
 		public World(int rows, int columns)
 		{
 			Coordinates = new List<Coordinate>();
-			for (var x = 0; x < rows; x++)
+			Rows = rows;
+			Columns = columns;
+
+			for (var x = 0; x < Rows; x++)
 			{
-				for (var y = 0; y < columns; y++)
+				for (var y = 0; y < Columns; y++)
 					Coordinates.Add(new Coordinate(x, y) { Cell = new DeadCell() });
 			}
 		}
@@ -35,6 +40,10 @@ namespace GameOfLife
 
 		public Coordinate Get(int x, int y)
 		{
+			if (x >= Rows) x = 0;
+			if (x < 0) x = Rows - 1;
+			if (y >= Columns) y = 0;
+			if (y < 0) y = Columns - 1;
 			return Coordinates[Coordinates.IndexOf(new Coordinate(x, y))];
 		}
 	}
