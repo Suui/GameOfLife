@@ -5,17 +5,14 @@ namespace GameOfLife
 {
 	public class Neighborhood
 	{
-		private Coordinate Coordinate { get; set; }
+		private Coordinate Coordinate { get; }
 
 		private Neighborhood(Coordinate coordinate)
 		{
 			Coordinate = coordinate;
 		}
 
-		public static Neighborhood For(Coordinate coordinate)
-		{
-			return new Neighborhood(coordinate);
-		}
+		public static Neighborhood For(Coordinate coordinate) => new Neighborhood(coordinate);
 
 		public List<Coordinate> In(World world)
 		{
