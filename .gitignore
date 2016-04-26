@@ -1,4 +1,6 @@
+*.user
+
 .vs
-Debug
-Release
+bin
+obj
 packages
