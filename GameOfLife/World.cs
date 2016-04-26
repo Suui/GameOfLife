@@ -51,5 +51,19 @@ namespace GameOfLife
 			if (coordinate.Y < 0) coordinate.Y = Columns - 1;
 			return coordinate;
 		}
+
+		public override string ToString()
+		{
+			var worldString = "";
+			var count = 0;
+			Coordinates.ForEach(coordinate =>
+			{
+				count += 1;
+				if (count % Columns == 0) worldString += "\n";
+				worldString += coordinate.Cell.IsAlive() ? "o " : ". ";
+			});
+
+			return worldString;
+		}
 	}
 }
