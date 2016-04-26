@@ -39,11 +39,17 @@ namespace GameOfLife
 
 		public Coordinate Get(int x, int y)
 		{
-			if (x >= Rows) x = 0;
-			if (x < 0) x = Rows - 1;
-			if (y >= Columns) y = 0;
-			if (y < 0) y = Columns - 1;
-			return Coordinates[Coordinates.IndexOf(new Coordinate(x, y))];
+			var coordinate = Delimited(new Coordinate(x, y));
+			return Coordinates[Coordinates.IndexOf(coordinate)];
+		}
+
+		private Coordinate Delimited(Coordinate coordinate)
+		{
+			if (coordinate.X >= Rows) coordinate.X = 0;
+			if (coordinate.X < 0) coordinate.X = Rows - 1;
+			if (coordinate.Y >= Columns) coordinate.Y = 0;
+			if (coordinate.Y < 0) coordinate.Y = Columns - 1;
+			return coordinate;
 		}
 	}
 }
