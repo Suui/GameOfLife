@@ -56,6 +56,7 @@
     <Compile Include="NeighborhoodShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CellShould.cs" />
+    <Compile Include="WorldShould.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

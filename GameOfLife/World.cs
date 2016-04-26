@@ -22,7 +22,7 @@ namespace GameOfLife
 			}
 		}
 
-		public void UpdateWorld()
+		public void Update()
 		{
 			Coordinates.ForEach(coordinate =>
 			{
@@ -33,10 +33,9 @@ namespace GameOfLife
 			Coordinates.ForEach(coordinate => coordinate.Cell = coordinate.Cell.NextState);
 		}
 
-		public List<Coordinate> NeighborhoodFor(Coordinate coordinate)
-		{
-			return Neighborhood.For(coordinate).In(this);
-		}
+		public void PlaceLivingCellIn(int x, int y) => Get(x, y).Cell = new LiveCell();
+
+		public List<Coordinate> NeighborhoodFor(Coordinate coordinate) => Neighborhood.For(coordinate).In(this);
 
 		public Coordinate Get(int x, int y)
 		{
