@@ -1,0 +1,24 @@
+{
+  "name": "WebDisplay",
+  "homepage": "https://github.com/Suui/GameOfLife",
+  "authors": [
+    "Suui <suui.gd@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "^1.4.0",
+    "paper-styles": "PolymerElements/paper-styles#^1.1.4",
+    "paper-input": "PolymerElements/paper-input#^1.1.11",
+    "iron-ajax": "PolymerElements/iron-ajax#^1.2.0"
+  }
+}
