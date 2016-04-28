@@ -1,6 +1,8 @@
-﻿using GameOfLife;
+﻿using System.Collections.Generic;
+using GameOfLife;
 using Nancy;
-using Nancy.ModelBinding;
+using Nancy.Extensions;
+using Newtonsoft.Json;
 
 
 namespace WebDisplay.Routes
@@ -13,8 +15,8 @@ namespace WebDisplay.Routes
 
 			Post["/world"] = _ =>
 			{
-				var world2 = this.Bind<World>();
-				var world = new World(20, 20);
+				var jsonWorld = JsonConvert.DeserializeObject<Dictionary<string, int>>(Request.Body.AsString());
+				var world = new World(jsonWorld["rows"], jsonWorld["columns"]);
 				return Response.AsJson(world);
 			};
 		}
