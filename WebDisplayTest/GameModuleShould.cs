@@ -4,7 +4,7 @@ using FluentAssertions;
 using Nancy.Testing;
 using Nancy.Testing.Fakes;
 using NUnit.Framework;
-using WebDisplay;
+using WebDisplay.Routes;
 
 
 /* TODO
@@ -33,7 +33,19 @@ namespace WebDisplayTest
 		[Test]
 		public void display_the_game_of_life_page()
 		{
-			Browser.Get("game").Body.AsString().Should().Contain("<title>Game of Life</title>");
+			Browser.Get("/game").Body.AsString().Should().Contain("<title>Game of Life</title>");
+		}
+
+		[Test]
+		public void create_a_world()
+		{
+			
+		}
+
+		[Test]
+		public void place_a_living_cell_in_the_world()
+		{
+			
 		}
 	}
 }

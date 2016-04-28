@@ -1,0 +1,68 @@
+﻿<link rel="import" href="../../bower/polymer/polymer.html"/>
+<link rel="import" href="../../bower/iron-ajax/iron-ajax.html"/>
+<link rel="import" href="../../bower/paper-styles/color.html"/>
+<link rel="import" href="game-cell.html"/>
+
+<dom-module id="game-world">
+    <style is="custom-style">
+        :host {
+            display: flex;
+            flex-flow: row wrap;
+            max-width: 800px;
+            border: solid 1px black;
+        }
+
+        :host:hover {
+            cursor: pointer;
+        }
+
+        .cell {
+             width: 10px;
+             height: 10px;
+         }
+
+        .cell:hover {
+            background-color: var(--paper-blue-100);
+            cursor: pointer;
+        }
+
+        .cell:active {
+            background-color: var(--paper-blue-200);
+        }
+    </style>
+
+    <template>
+        <iron-ajax
+            auto
+            url="/game/world"
+            body='{"rows": 20, "columns": 20}'
+            method="POST"
+            content-type="application/json"
+            handle-as="json"
+            on-response="createWorld">
+        </iron-ajax>
+
+        <template is="dom-repeat" items="[[world]]">
+            <game-cell on-tap="placeLiveCell"></game-cell>
+        </template>
+    </template>
+
+    <script>
+        Polymer({
+            is: "game-world",
+            properties: {
+                world: {
+                    type: Array,
+                    value: Array(400)
+                }
+            },
+            placeLiveCell: function() {
+                
+            },
+            createWorld: function(response) {
+                console.log(response.detail.request.xhr.response);
+                console.log("World created");
+            }
+        });
+    </script>
+</dom-module>
