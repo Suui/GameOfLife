@@ -10,7 +10,7 @@ namespace GameOfLifeTest
 	class CellShould
 	{
 		[Test]
-		public void come_to_life_when_it_has_extacly_three_live_neighbors()
+		public void come_to_life_when_it_has_exactly_three_live_neighbors()
 		{
 			var coordinate = new Coordinate { Cell = new DeadCell() };
 			var neighbors = new List<Coordinate>
